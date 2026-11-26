@@ -1,0 +1,25 @@
+# Environment & secrets
+.env
+.env.local
+.env*.local
+
+# Python / FastAPI
+backend/.venv/
+backend/__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Local runtime data & uploads
+backend/uploads/
+backend/data/*.json
+backend/data/*.db
+backend/data/*.sqlite3
+
+# OS / Editor
+.DS_Store
+Thumbs.db
