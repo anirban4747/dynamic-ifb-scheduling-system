@@ -103,7 +103,7 @@ export default function LoginPage() {
                 placeholder="Enter username"
                 autoComplete="username"
                 required
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-600"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm transition focus:border-[#123b63] focus:ring-2 focus:ring-[#123b63]/15 focus:outline-none"
               />
             </div>
 
@@ -120,7 +120,7 @@ export default function LoginPage() {
                   placeholder="Enter password"
                   autoComplete="current-password"
                   required
-                  className="w-full rounded-lg border border-slate-300 py-2 pr-14 pl-3 text-sm outline-none focus:border-blue-600"
+                  className="w-full rounded-lg border border-slate-300 py-2 pr-14 pl-3 text-sm transition focus:border-[#123b63] focus:ring-2 focus:ring-[#123b63]/15 focus:outline-none"
                 />
                 <button
                   type="button"

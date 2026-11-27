@@ -5,6 +5,7 @@
   --primary-dark: #0c2844;
   --accent: #2563eb;
   --success: #059669;
+  --warning: #d97706;
   --danger: #dc2626;
   --bg-page: #f1f5f9;
   --bg-card: #ffffff;
@@ -17,29 +18,65 @@
   --radius-md: 10px;
 }
 
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Align numbers cleanly across KPIs, charts, and schedule tables */
+  table,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Clean, unobtrusive scrollbars inside tables and panels */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
 @layer components {
   .ifb-header {
-    background: linear-gradient(135deg, #0c2844 0%, #123b63 100%);
+    background: linear-gradient(135deg, #091f36 0%, #0c2844 48%, #123b63 100%);
     color: #ffffff;
-    padding: 13px 24px;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    box-shadow: 0 2px 12px rgba(12, 40, 68, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 16px rgba(12, 40, 68, 0.16);
     flex-shrink: 0;
     z-index: 100;
   }
 
   .ifb-logo {
-    background: #e11d48;
+    background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
     color: #ffffff;
     font-weight: 800;
     font-size: 18px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     padding: 7px 14px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(225, 29, 72, 0.35);
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 3px 10px rgba(225, 29, 72, 0.35);
     flex-shrink: 0;
   }
 
@@ -56,22 +93,23 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 80px;
+    width: 76px;
     z-index: 40;
     background: #ffffff;
     border-right: 1px solid #e2e8f0;
-    padding: 16px 10px;
+    padding: 14px 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     overflow-x: hidden;
     overflow-y: auto;
-    transition: width 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 2px 0 10px rgba(15, 23, 42, 0.03);
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
   }
 
   .ifb-sidebar:hover {
-    width: 230px;
-    box-shadow: 6px 0 20px rgba(15, 23, 42, 0.1);
+    width: 224px;
+    box-shadow: 8px 0 24px rgba(15, 23, 42, 0.12);
   }
 
   .ifb-nav-btn {
@@ -80,17 +118,17 @@
     justify-content: flex-start;
     gap: 14px;
     width: 100%;
-    padding: 12px 10px;
+    padding: 11px 10px;
     border-radius: 8px;
     border-left: 3px solid transparent;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: #64748b;
     background: transparent;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
 
   .ifb-nav-btn:hover {
@@ -105,11 +143,16 @@
   }
 
   .ifb-nav-icon {
-    width: 36px;
+    width: 34px;
     text-align: center;
     flex-shrink: 0;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1;
+    transition: transform 0.15s ease;
+  }
+
+  .ifb-nav-btn:hover .ifb-nav-icon {
+    transform: scale(1.06);
   }
 
   .ifb-nav-label {
@@ -124,31 +167,40 @@
   .ifb-main {
     flex: 1;
     min-width: 0;
-    margin-left: 80px;
-    padding: 24px 28px;
+    margin-left: 76px;
+    padding: 22px 26px;
     overflow-y: auto;
+    background: #f1f5f9;
   }
 
   .ifb-panel {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
-    padding: 20px 22px;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .ifb-panel:hover {
+    border-color: #cbd5e1;
   }
 
   .bar-demand {
-    fill: #d3dbe6;
-    background-color: #d3dbe6;
+    fill: #cbd5e1;
+    background-color: #cbd5e1;
+    transition: height 0.25s ease;
   }
 
   .bar-commit {
-    fill: #60a5fa;
-    background-color: #60a5fa;
+    fill: #3b82f6;
+    background-color: #3b82f6;
+    transition: height 0.25s ease;
   }
 
   .bar-disp {
-    fill: #22c55e;
-    background-color: #22c55e;
+    fill: #10b981;
+    background-color: #10b981;
+    transition: height 0.25s ease;
   }
 }

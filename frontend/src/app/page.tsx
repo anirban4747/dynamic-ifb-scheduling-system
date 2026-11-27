@@ -1355,7 +1355,7 @@ const analysisAvailableMonths = useMemo(() => {
                     <select
                       value={selectedCustomer}
                       onChange={(e) => refreshData({ preferredCustomer: e.target.value })}
-                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900"
+                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     >
                       <option value="ALL">All Customers (Consolidated)</option>
                       {(analytics?.customers || []).map((c) => (
@@ -1369,7 +1369,7 @@ const analysisAvailableMonths = useMemo(() => {
                     <select
                       value={selectedSource}
                       onChange={(e) => refreshData({ preferredSource: e.target.value, resetCustomer: true })}
-                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900"
+                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     >
                       <option value="__ALL__">Latest Uploaded Sheet</option>
                       {snapshots.map((s) => (
@@ -1390,7 +1390,7 @@ const analysisAvailableMonths = useMemo(() => {
                         const match = (analytics?.availableMonths || []).filter((m) => m.startsWith(`${y}-`));
                         if (match.length) refreshData({ preferredMonth: match[match.length - 1] });
                       }}
-                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900"
+                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     >
                       {availableYears.length ? (
                         availableYears.map((y) => <option key={y} value={y}>{y}</option>)
@@ -1405,7 +1405,7 @@ const analysisAvailableMonths = useMemo(() => {
                     <select
                       value={selectedMonth}
                       onChange={(e) => refreshData({ preferredMonth: e.target.value })}
-                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900"
+                      className="rounded-md border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     >
                       {monthsForYear.length ? (
                         monthsForYear.map((m) => (
@@ -1431,7 +1431,7 @@ const analysisAvailableMonths = useMemo(() => {
                           refreshData({ preferredTarget: v });
                         }
                       }}
-                      className="w-14 rounded-md border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-900"
+                      className="w-14 rounded-md border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     />
                     <span>%</span>
                   </label>
@@ -1459,17 +1459,17 @@ const analysisAvailableMonths = useMemo(() => {
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div className="ifb-panel">
                   <div className="text-[11px] font-bold uppercase text-slate-500">PREVIOUS · {scheduleTrio.prevLabel || "–"}</div>
-                  <div className="mt-1 text-3xl font-extrabold">{scheduleTrio.prevVal !== null ? formatNumber(scheduleTrio.prevVal) : "–"}</div>
+                  <div className="mt-1 text-3xl font-extrabold tabular-nums">{scheduleTrio.prevVal !== null ? formatNumber(scheduleTrio.prevVal) : "–"}</div>
                   <div className={`mt-1 text-xs font-semibold ${deltaToneClass(scheduleTrio.prevDelta)}`}>{scheduleTrio.prevDelta}</div>
                 </div>
                 <div className="ifb-panel border-t-4 border-t-sky-600">
                   <div className="text-[11px] font-bold uppercase text-slate-500">SELECTED · {scheduleTrio.selLabel || "–"}</div>
-                  <div className="mt-1 text-3xl font-extrabold text-sky-700">{scheduleTrio.selVal !== null ? formatNumber(scheduleTrio.selVal) : "–"}</div>
+                  <div className="mt-1 text-3xl font-extrabold text-sky-700 tabular-nums">{scheduleTrio.selVal !== null ? formatNumber(scheduleTrio.selVal) : "–"}</div>
                   <div className={`mt-1 text-xs font-semibold ${deltaToneClass(scheduleTrio.selDelta)}`}>{scheduleTrio.selDelta}</div>
                 </div>
                 <div className="ifb-panel">
                   <div className="text-[11px] font-bold uppercase text-slate-500">UPCOMING · {scheduleTrio.nextLabel || "–"}</div>
-                  <div className="mt-1 text-3xl font-extrabold">{scheduleTrio.nextVal !== null ? formatNumber(scheduleTrio.nextVal) : "–"}</div>
+                  <div className="mt-1 text-3xl font-extrabold tabular-nums">{scheduleTrio.nextVal !== null ? formatNumber(scheduleTrio.nextVal) : "–"}</div>
                   <div className={`mt-1 text-xs font-semibold ${deltaToneClass(scheduleTrio.nextDelta)}`}>{scheduleTrio.nextDelta}</div>
                 </div>
               </div>
@@ -1480,7 +1480,7 @@ const analysisAvailableMonths = useMemo(() => {
                   <span className="rounded bg-slate-100 p-2 text-xl">🚚</span>
                   <div>
                     <div className="text-[11px] font-bold uppercase text-slate-500">DISPATCHED</div>
-                    <div className="text-2xl font-extrabold text-[#123b63]">{formatNumber(analytics?.summary.totalDispatched)}</div>
+                    <div className="text-2xl font-extrabold text-[#123b63] tabular-nums">{formatNumber(analytics?.summary.totalDispatched)}</div>
                     <div className="text-xs text-slate-500">of {formatNumber(analytics?.summary.totalCommitment)} committed</div>
                   </div>
                 </div>
@@ -1489,7 +1489,7 @@ const analysisAvailableMonths = useMemo(() => {
                   <span className="rounded bg-slate-100 p-2 text-xl">✅</span>
                   <div className="flex-1">
                     <div className="text-[11px] font-bold uppercase text-slate-500">FULFILLMENT</div>
-                    <div className={`text-2xl font-extrabold ${isAboveTarget ? "text-emerald-600" : "text-red-600"}`}>
+                    <div className={`text-2xl font-extrabold tabular-nums ${isAboveTarget ? "text-emerald-600" : "text-red-600"}`}>
                       {rate !== null ? `${rate.toFixed(1)}%` : "–"}
                     </div>
                     <div className="mt-1.5 h-2 w-full rounded-full bg-slate-200 overflow-hidden">
@@ -1554,7 +1554,7 @@ const analysisAvailableMonths = useMemo(() => {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {topShortfallParts.slice(0, 5).map((r) => (
-                        <tr key={`${r.customer}-${r.partNo}`}>
+                        <tr key={`${r.customer}-${r.partNo}`} className="hover:bg-slate-50/80 transition-colors">
                           <td className="py-2 pr-3"><span className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono">{r.partNo}</span></td>
                           <td className="py-2 pr-3 font-medium">{r.customer}</td>
                           <td className="py-2 pr-3 text-right">{formatNumber(r.commitment)}</td>
@@ -1584,7 +1584,7 @@ const analysisAvailableMonths = useMemo(() => {
                       setCompareMode("PREV");
                       refreshData({ preferredSource: e.target.value, resetCustomer: true });
                     }}
-                    className="rounded-md border border-slate-300 px-2.5 py-2 font-semibold"
+                    className="rounded-md border border-slate-300 px-2.5 py-2 font-semibold transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                   >
                     <option value="__ALL__">Latest Uploaded Sheet</option>
                     {snapshots.map((s) => (
@@ -1607,7 +1607,7 @@ const analysisAvailableMonths = useMemo(() => {
                         setScopeDropdownOpen(true);
                       }}
                       placeholder="All customers & parts — type company, part, or line (e.g. blower)..."
-                      className="w-full rounded-md border border-slate-300 py-2 pr-8 pl-2.5 font-normal focus:border-blue-500 focus:outline-none"
+                      className="w-full rounded-md border border-slate-300 py-2 pr-8 pl-2.5 font-normal transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     />
                     {(analysisScopeText || analysisScope.type !== "all") && (
                       <button
@@ -1852,7 +1852,7 @@ const analysisAvailableMonths = useMemo(() => {
                             refreshData({ preferredTarget: v });
                           }
                         }}
-                        className="w-14 rounded border border-slate-300 px-2 py-1 text-slate-900"
+                        className="w-14 rounded border border-slate-300 px-2 py-1 text-slate-900 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                       />{" "}
                       %
                     </label>
@@ -1891,7 +1891,7 @@ const analysisAvailableMonths = useMemo(() => {
                     value={cmpSearch}
                     onChange={(e) => setCmpSearch(e.target.value)}
                     placeholder="🔍 Search customer, part no, line..."
-                    className="w-72 rounded border border-slate-300 bg-white px-3 py-1.5 text-xs"
+                    className="w-72 rounded border border-slate-300 bg-white px-3 py-1.5 text-xs transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                   />
                   <div className="flex flex-wrap gap-1.5">
                     {(
@@ -1982,7 +1982,7 @@ const analysisAvailableMonths = useMemo(() => {
                                 ? { text: "Above", cls: "bg-sky-100 text-sky-700" }
                                 : { text: "Shortfall", cls: "bg-red-100 text-red-700" };
                         return (
-                          <tr key={`${r.customer}-${r.partNo}-${r.line}`}>
+                          <tr key={`${r.customer}-${r.partNo}-${r.line}`} className="hover:bg-slate-50/80 transition-colors">
                             <td className="py-2 px-2 font-semibold">{r.customer}</td>
                             <td className="py-2 px-2"><span className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono">{r.partNo}</span></td>
                             <td className="py-2 px-2">{r.line}</td>
@@ -2054,7 +2054,7 @@ const analysisAvailableMonths = useMemo(() => {
                             : "bg-red-100 text-red-700";
                         const statusTxt = isOn ? "On target" : isClose ? "Close" : "Below target";
                         return (
-                          <tr key={ln.line}>
+                          <tr key={ln.line} className="hover:bg-slate-50/80 transition-colors">
                             <td className="py-2.5 px-3 font-bold text-slate-900">{ln.line}</td>
                             <td className="py-2.5 px-3 text-right">{formatNumber(ln.commitment)}</td>
                             <td className="py-2.5 px-3 text-right">{formatNumber(ln.dispatched)}</td>
@@ -2132,14 +2132,14 @@ const analysisAvailableMonths = useMemo(() => {
                   value={recordsSearch}
                   onChange={(e) => setRecordsSearch(e.target.value)}
                   placeholder="🔍 Search customer, part, line, description, or source..."
-                  className="w-64 rounded border border-slate-300 bg-white px-3 py-1.5"
+                  className="w-64 rounded border border-slate-300 bg-white px-3 py-1.5 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                 />
                 <label className="flex items-center gap-1.5 font-medium">
                   Customer:
                   <select
                     value={recordsCustomer}
                     onChange={(e) => setRecordsCustomer(e.target.value)}
-                    className="rounded border border-slate-300 bg-white px-2.5 py-1.5"
+                    className="rounded border border-slate-300 bg-white px-2.5 py-1.5 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                   >
                     <option value="ALL">All Customers</option>
                     {(analytics?.customers || []).map((c) => <option key={c} value={c}>{c}</option>)}
@@ -2205,7 +2205,7 @@ const analysisAvailableMonths = useMemo(() => {
                       const q3 = Number(r.monthlySchedules?.[m3] || 0);
                       const disp = Number(r.monthlyDispatches?.[m1] || 0);
                       return (
-                        <tr key={r.id}>
+                        <tr key={r.id} className="hover:bg-slate-50/80 transition-colors">
                           {showAllColumns && <td className="py-2 px-2 text-slate-500">{r.serialNo}</td>}
                           <td className="py-2 px-2 font-semibold whitespace-nowrap">{r.customer}</td>
                           {showAllColumns && <td className="py-2 px-2 font-mono text-slate-600">{r.customerCode || "–"}</td>}
@@ -2286,7 +2286,7 @@ const analysisAvailableMonths = useMemo(() => {
                     type="date"
                     value={snapshotDate}
                     onChange={(e) => setSnapshotDate(e.target.value)}
-                    className="rounded-md border border-slate-300 px-3 py-1.5"
+                    className="rounded-md border border-slate-300 px-3 py-1.5 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                   />
                   <span className="text-slate-500">For an archived sheet, choose its plan/revision date. New uploads default to today.</span>
                 </div>
@@ -2342,7 +2342,7 @@ const analysisAvailableMonths = useMemo(() => {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {snapshots.map((s, idx) => (
-                        <tr key={s.snapshotId}>
+                        <tr key={s.snapshotId} className="hover:bg-slate-50/80 transition-colors">
                           <td className="py-2.5 px-2 text-slate-500">{idx + 1}</td>
                           <td className="py-2.5 px-2 font-bold">📄 {s.filename}</td>
                           <td className="py-2.5 px-2">
@@ -2425,19 +2425,19 @@ const analysisAvailableMonths = useMemo(() => {
               >
                 <label className="flex flex-col gap-1 font-semibold">
                   Full Name
-                  <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="e.g. Ravi Kumar" className="rounded border border-slate-300 bg-white px-2.5 py-2" />
+                  <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="e.g. Ravi Kumar" className="rounded border border-slate-300 bg-white px-2.5 py-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none" />
                 </label>
                 <label className="flex flex-col gap-1 font-semibold">
                   Username *
-                  <input value={newUsername} onChange={(e) => setNewUsername(e.target.value)} placeholder="e.g. rkumaar" required className="rounded border border-slate-300 bg-white px-2.5 py-2" />
+                  <input value={newUsername} onChange={(e) => setNewUsername(e.target.value)} placeholder="e.g. rkumaar" required className="rounded border border-slate-300 bg-white px-2.5 py-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none" />
                 </label>
                 <label className="flex flex-col gap-1 font-semibold">
                   Password *
-                  <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Min 6 characters" required className="rounded border border-slate-300 bg-white px-2.5 py-2" />
+                  <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Min 6 characters" required className="rounded border border-slate-300 bg-white px-2.5 py-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none" />
                 </label>
                 <label className="flex flex-col gap-1 font-semibold">
                   Role
-                  <select value={newRole} onChange={(e) => setNewRole(e.target.value as "planner" | "admin")} className="rounded border border-slate-300 bg-white px-2.5 py-2">
+                  <select value={newRole} onChange={(e) => setNewRole(e.target.value as "planner" | "admin")} className="rounded border border-slate-300 bg-white px-2.5 py-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none">
                     <option value="planner">Planner</option>
                     <option value="admin">Admin</option>
                   </select>
@@ -2459,7 +2459,7 @@ const analysisAvailableMonths = useMemo(() => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {usersList.map((u, i) => (
-                    <tr key={u.id}>
+                    <tr key={u.id} className="hover:bg-slate-50/80 transition-colors">
                       <td className="py-2.5">{i + 1}</td>
                       <td className="py-2.5 font-bold">{u.name}</td>
                       <td className="py-2.5 font-mono">{u.username}</td>
@@ -2563,7 +2563,7 @@ const analysisAvailableMonths = useMemo(() => {
                       value={auditSearch}
                       onChange={(e) => setAuditSearch(e.target.value)}
                       placeholder="Search user or event..."
-                      className="w-56 rounded-md border border-slate-300 px-3 py-1.5 text-xs"
+                      className="w-56 rounded-md border border-slate-300 px-3 py-1.5 text-xs transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:outline-none"
                     />
                   </div>
 
@@ -2579,7 +2579,7 @@ const analysisAvailableMonths = useMemo(() => {
                       </thead>
                       <tbody className="divide-y divide-slate-100">
                         {visibleAuditLogs.map((l) => (
-                          <tr key={l.id}>
+                          <tr key={l.id} className="hover:bg-slate-50/80 transition-colors">
                             <td className="py-2 px-3 text-slate-500 whitespace-nowrap">
                               {l.at ? new Date(l.at).toLocaleString("en-IN", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", hour12: true }) : "—"}
                             </td>
@@ -2626,7 +2626,7 @@ const analysisAvailableMonths = useMemo(() => {
                                 ? { text: "Timed Out", cls: "bg-amber-100 text-amber-700" }
                                 : { text: "Signed Out", cls: "bg-slate-100 text-slate-600" };
                           return (
-                            <tr key={s.id}>
+                            <tr key={s.id} className="hover:bg-slate-50/80 transition-colors">
                               <td className="py-2.5 px-3">
                                 <div className="font-bold text-slate-900">{s.name}</div>
                                 <div className="text-[11px] text-slate-500">
